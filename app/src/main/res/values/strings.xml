@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MediaActivity</string>
+    <string name="menu_global_add">添加</string>
+    <string name="menu_global_complete">完成</string>
+    <string name="title_media_selector">请选择图片或视频</string>
+    <string name="title_media_selector_only_image">请选择图片</string>
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.zkxt.mediausing.viewmodel.ViewModelActivityMain" />
+
+        <variable
+            name="item"
+            type="com.arcns.core.media.selector.EMedia" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/image"
+            setImage="@{item.value}"
+            setImageAsGif="@{item.isGif}"
+            setImageSize="@{@dimen/dp_60}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:foreground="@drawable/ic_media_foreground"
+            android:onClick="@{()->viewModel.onClickMedia(item)}"
+            android:transitionName="@{item.idToString}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_corner_radius="@dimen/dp_18" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
+            android:foreground="@drawable/media_selector_media_type_video_or_audio_play_foreground"
+            android:scaleType="fitXY"
+            android:src="@drawable/media_selector_media_type_video_or_audio_play"
+            android:visibility="@{item.isImage?View.GONE:View.VISIBLE}"
+            app:bindMediaClickOpenApp="@{item}"
+            app:layout_constraintBottom_toBottomOf="@+id/image"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.2" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_3"
+            android:layout_marginRight="@dimen/dp_3"
+            android:foreground="@drawable/ic_delete_foreground"
+            android:onClick="@{()->viewModel.onFileDel(item)}"
+            android:src="@drawable/delete"
+            app:bindImageViewLongClick="@{()->viewModel.onFileDel(item)}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

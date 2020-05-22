@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.arcns.core.media.selector.MediaSelectorViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor">
+
+        <include
+            layout="@layout/media_selector_layout_image_selector_details"
+            viewModel="@{viewModel}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            android:visibility="@{viewModel.detailsIsFullScreen?View.GONE:View.VISIBLE}"
+            app:title="@{@string/title_media_selector}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
